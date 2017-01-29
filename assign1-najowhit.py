@@ -1,7 +1,10 @@
 import numpy
 import sys
 
-'''matrix = numpy.array([[5, 3], [1, 4]])
+'''
+Example from slides replicated
+
+matrix = numpy.array([[5, 3], [1, 4]])
 #square = numpy.shape(matrix)
 
 oneV = numpy.ones(width)
@@ -11,10 +14,11 @@ mean = matrix.mean(axis=0)
 #print(mean)
 
 center = matrix - oneV*mean
-print(center)'''
+print(center)
+'''
 
 def computeCov(data):
-    #Center the data
+    # Center the data
     square = numpy.shape(data)
     one_vector = numpy.ones(square)
 
@@ -22,8 +26,13 @@ def computeCov(data):
 
     z_center = data - one_vector*mean
 
-    #Compute covariance
-    #Compare with: np.cov(Z, bias=True, rowvar=False)
+    # Compute covariance
+
+    # Compare covariance with numpy.cov'''
+
+    numpy_cov = numpy.cov(z_center, rowvar=0, bias=1)
+
+
 
 def main():
 
