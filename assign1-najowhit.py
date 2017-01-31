@@ -1,6 +1,26 @@
 import numpy
 import sys
 
+''''# Center the data
+data = numpy.array([[1,4], [3,8], [7, 2], [6,1], [3,0]])
+length, square = numpy.shape(data)
+one_vector = numpy.ones((length, square))
+
+mean = data.mean(axis=0)
+
+z_center = data - one_vector*mean
+
+
+# Compute covariance
+
+# Compare covariance with numpy.cov
+
+numpy_cov = numpy.cov(z_center, rowvar=0, bias=1)
+print(numpy_cov)
+
+my_cov = 1/float(length) * numpy.dot(z_center.transpose(), z_center)
+print(my_cov)'''
+
 '''
 Example from slides replicated
 
@@ -17,20 +37,26 @@ center = matrix - oneV*mean
 print(center)
 '''
 
+
 def computeCov(data):
     # Center the data
-    square = numpy.shape(data)
-    one_vector = numpy.ones(square)
+    row, columns = numpy.shape(data)
+    one_vector = numpy.ones((row, columns))
 
     mean = data.mean(axis=0)
 
     z_center = data - one_vector*mean
 
     # Compute covariance
+    # covariance =  zTz / n
+    my_cov = numpy.dot(z_center.transpose(), z_center) / float(row)
 
-    # Compare covariance with numpy.cov'''
+    # Compare covariance with numpy.cov
 
     numpy_cov = numpy.cov(z_center, rowvar=0, bias=1)
+
+    cov_equality = numpy.allclose(my_cov, numpy_cov)
+    print(cov_equality)
 
 
 
