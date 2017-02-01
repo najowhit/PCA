@@ -109,6 +109,7 @@ def varianceProjection(data):
     variance = numpy.trace(my_cov_projection)
     print(variance)
 
+
 def lambdaEig(data):
 
     # Eigenvector that corresponds to largest eigenvalue = largest eigenvector
@@ -118,6 +119,10 @@ def lambdaEig(data):
 
     # Decomposition form = UlambdaU^T ,  U = vec in this case
     # Read 7.2.4 to figure plan from here
+    val_lambda = numpy.diag(val)
+    sigma = numpy.dot(numpy.dot(vec, val_lambda), vec.transpose())
+
+    print(sigma)
 
 
 
