@@ -40,9 +40,21 @@ print(center)
 '''
 
 
+# Helper method for centering data
+def centerData(data):
+    row, columns = numpy.shape(data)
+    one_vector = numpy.ones((row, columns))
+
+    mean = data.mean(axis=0)
+
+    z_center = data - one_vector * mean
+
+    return z_center
+
+
 def computeCov(data):
 
-    # Center the data
+    # Center the data, this redundancy from the centerData() method is kept to keep the algorithm clear
     row, columns = numpy.shape(data)
     one_vector = numpy.ones((row, columns))
 
@@ -70,18 +82,28 @@ def dEig(data):
     numpy_cov = numpy.cov(data, rowvar=0, bias=1)
     val, vec = linalg.eig(numpy_cov)
 
-    # Eigenvectors are the columns of vec
+    # Eigenvectors are the columns of vec, transpose to align eigenvalues with eigenvectors
+    # Before a transpose vec[0] will return a row instead of the needed column
     t_vec = vec.transpose()
 
     # Find largest eigenvalue
-
     sorted_val = numpy.argsort(val)
-    print(sorted_val)
 
     # Get the index that corresponds to largest eigenvalues
     first = sorted_val[len(sorted_val) - 1]
     second = sorted_val[len(sorted_val) - 2]
-    print(t_vec[first])
+
+    # Get the largest two eigenvectors using the indicies
+    largest = t_vec[first]
+    snd_largest = t_vec[second]
+
+    # Compute the projection
+    subspace = numpy.array([largest, snd_largest])
+    z_center = centerData(data)
+
+    projection = numpy.dot(z_center, subspace.transpose())
+    print(projection)
+
 
 
 
