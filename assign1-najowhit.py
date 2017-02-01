@@ -74,8 +74,10 @@ def computeCov(data):
     print('my_cov = numpy_cov')
     print(cov_equality)
 
+    return my_cov
 
-def dEig(data):
+
+def varianceProjection(data):
 
     # Eigenvector that corresponds to largest eigenvalue = largest eigenvector
 
@@ -100,9 +102,24 @@ def dEig(data):
     # Compute the projection
     subspace = numpy.array([largest, snd_largest])
     z_center = centerData(data)
-
     projection = numpy.dot(z_center, subspace.transpose())
-    print(projection)
+
+    # Compute variance of projection
+    my_cov_projection = computeCov(projection)
+    variance = numpy.trace(my_cov_projection)
+    print(variance)
+
+def lambdaEig(data):
+
+    # Eigenvector that corresponds to largest eigenvalue = largest eigenvector
+
+    numpy_cov = numpy.cov(data, rowvar=0, bias=1)
+    val, vec = linalg.eig(numpy_cov)
+
+    # Eigenvectors are the columns of vec, transpose to align eigenvalues with eigenvectors
+    # Before a transpose vec[0] will return a row instead of the needed column
+    t_vec = vec.transpose()
+
 
 
 
@@ -123,7 +140,8 @@ def main():
         exit(1)
 
     computeCov(original_data)
-    dEig(original_data)
+    varianceProjection(original_data)
+    lambdaEig(original_data)
 
 
 main()
