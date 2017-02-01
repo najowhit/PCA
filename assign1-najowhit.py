@@ -116,9 +116,8 @@ def lambdaEig(data):
     numpy_cov = numpy.cov(data, rowvar=0, bias=1)
     val, vec = linalg.eig(numpy_cov)
 
-    # Eigenvectors are the columns of vec, transpose to align eigenvalues with eigenvectors
-    # Before a transpose vec[0] will return a row instead of the needed column
-    t_vec = vec.transpose()
+    # Decomposition form = UlambdaU^T ,  U = vec in this case
+    # Read 7.2.4 to figure plan from here
 
 
 
@@ -142,6 +141,7 @@ def main():
     computeCov(original_data)
     varianceProjection(original_data)
     lambdaEig(original_data)
+
 
 
 main()
