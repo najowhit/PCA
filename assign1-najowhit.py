@@ -3,43 +3,6 @@ import sys
 from numpy import linalg
 
 
-''''# Center the data
-data = numpy.array([[1,4], [3,8], [7, 2], [6,1], [3,0]])
-length, square = numpy.shape(data)
-one_vector = numpy.ones((length, square))
-
-mean = data.mean(axis=0)
-
-z_center = data - one_vector*mean
-
-
-# Compute covariance
-
-# Compare covariance with numpy.cov
-
-numpy_cov = numpy.cov(z_center, rowvar=0, bias=1)
-print(numpy_cov)
-
-my_cov = 1/float(length) * numpy.dot(z_center.transpose(), z_center)
-print(my_cov)'''
-
-'''
-Example from slides replicated
-
-matrix = numpy.array([[5, 3], [1, 4]])
-#square = numpy.shape(matrix)
-
-oneV = numpy.ones(width)
-#print(oneV)
-
-mean = matrix.mean(axis=0)
-#print(mean)
-
-center = matrix - oneV*mean
-print(center)
-'''
-
-
 # Helper method for centering data
 def centerData(data):
     row, columns = numpy.shape(data)
@@ -122,6 +85,7 @@ def lambdaEig(data):
     val_lambda = numpy.diag(val)
     sigma = numpy.dot(numpy.dot(vec, val_lambda), vec.transpose())
 
+    numpy.set_printoptions(suppress=True, linewidth=150)
     print(sigma)
 
 
@@ -140,7 +104,6 @@ def pca(data, alpha):
 
     # 4) Compute eigenvalues & # 5) Compute eigenvectors
     val, vec = linalg.eig(numpy_cov)
-
 
     # 6) Fraction of total variance
 
@@ -169,8 +132,6 @@ def main():
     computeCov(original_data)
     varianceProjection(original_data)
     lambdaEig(original_data)
-
-
 
 main()
 
