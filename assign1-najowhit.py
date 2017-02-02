@@ -125,7 +125,30 @@ def lambdaEig(data):
     print(sigma)
 
 
+def pca(data, alpha):
 
+    # 1) Compute mean
+    mean = data.mean(axis=0)
+
+    # 2) Center the data
+    row, columns = numpy.shape(data)
+    one_vector = numpy.ones((row, columns))
+    z_center = data - one_vector * mean
+
+    # 3) Compute covariance matrix
+    numpy_cov = numpy.cov(z_center, rowvar=0, bias=1)
+
+    # 4) Compute eigenvalues & # 5) Compute eigenvectors
+    val, vec = linalg.eig(numpy_cov)
+
+
+    # 6) Fraction of total variance
+
+    # 7) Choose dimensionality
+
+    # 8) Reduced basis
+
+    # 9) Reduced dimensionality data
 
 
 def main():
