@@ -15,7 +15,7 @@ def centerData(data):
     return z_center
 
 
-def computeCov(data, printOutput):
+def computeCov(data, printoutput):
 
     # Center the data, this redundancy from the centerData() method is kept to keep the algorithm clear
     row, columns = numpy.shape(data)
@@ -35,7 +35,7 @@ def computeCov(data, printOutput):
 
     cov_equality = numpy.allclose(my_cov, numpy_cov)
 
-    if printOutput:
+    if printoutput:
         print('QUESTION 1')
         print('Output of numpy.allclose(my_cov, numpy_cov):')
         print(cov_equality)
@@ -72,7 +72,8 @@ def varianceProjection(data):
     projection = numpy.dot(z_center, subspace.transpose())
 
     # Compute variance of projection
-    my_cov_projection = computeCov(projection, printOutput=False)
+    printoutput=False
+    my_cov_projection = computeCov(projection, printoutput)
     variance = numpy.trace(my_cov_projection)
     print('QUESTION 2')
     print('Variance:')
@@ -140,7 +141,11 @@ def main():
         exit(1)
 
     sys.stdout = open('assign1-najowhit.txt', 'w')
-    computeCov(original_data, printOutput=True)
+
+    # Controls when the output of computeCov should be utilized
+    print_output = True
+
+    computeCov(original_data, print_output)
     varianceProjection(original_data)
     lambdaEig(original_data)
     sys.stdout.close()

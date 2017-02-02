@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="454e7074-0e9a-44b4-a677-cea09c63ab1e" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/filename.txt" afterPath="" />
       <change type="DELETED" beforePath="$USER_HOME$/README.md" afterPath="" />
       <change type="DELETED" beforePath="$USER_HOME$/app/configs/app.config.js" afterPath="" />
       <change type="DELETED" beforePath="$USER_HOME$/app/configs/development/.gitkeep" afterPath="" />
@@ -41,6 +40,7 @@
       <change type="DELETED" beforePath="$USER_HOME$/tests/tests/unit-tests/routers/OrganizationRouterTest.js" afterPath="" />
       <change type="DELETED" beforePath="$USER_HOME$/tests/tests/unit-tests/routers/UserRouterTest.js" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assign1-najowhit.py" afterPath="$PROJECT_DIR$/assign1-najowhit.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assign1-najowhit.txt" afterPath="$PROJECT_DIR$/assign1-najowhit.txt" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -61,8 +61,8 @@
       <file leaf-file-name="assign1-najowhit.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/assign1-najowhit.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="298">
-              <caret line="90" column="26" lean-forward="true" selection-start-line="90" selection-start-column="26" selection-end-line="90" selection-end-column="26" />
+            <state relative-caret-position="223">
+              <caret line="36" column="0" lean-forward="true" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
               <folding>
                 <element signature="e#0#12#0" expanded="true" />
               </folding>
@@ -488,8 +488,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/assign1-najowhit.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="90" column="26" lean-forward="true" selection-start-line="90" selection-start-column="26" selection-end-line="90" selection-end-column="26" />
+        <state relative-caret-position="223">
+          <caret line="36" column="0" lean-forward="true" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
           <folding>
             <element signature="e#0#12#0" expanded="true" />
           </folding>
