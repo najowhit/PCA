@@ -15,7 +15,7 @@ def centerData(data):
     return z_center
 
 
-def computeCov(data):
+def computeCov(data, printOutput):
 
     # Center the data, this redundancy from the centerData() method is kept to keep the algorithm clear
     row, columns = numpy.shape(data)
@@ -34,8 +34,12 @@ def computeCov(data):
     numpy_cov = numpy.cov(z_center, rowvar=0, bias=1)
 
     cov_equality = numpy.allclose(my_cov, numpy_cov)
-    print('my_cov = numpy_cov')
-    print(cov_equality)
+
+    if printOutput:
+        print('QUESTION 1')
+        print('Output of numpy.allclose(my_cov, numpy_cov):')
+        print(cov_equality)
+        print('')
 
     return my_cov
 
@@ -68,9 +72,12 @@ def varianceProjection(data):
     projection = numpy.dot(z_center, subspace.transpose())
 
     # Compute variance of projection
-    my_cov_projection = computeCov(projection)
+    my_cov_projection = computeCov(projection, printOutput=False)
     variance = numpy.trace(my_cov_projection)
+    print('QUESTION 2')
+    print('Variance:')
     print(variance)
+    print('')
 
 
 def lambdaEig(data):
@@ -86,6 +93,9 @@ def lambdaEig(data):
     sigma = numpy.dot(numpy.dot(vec, val_lambda), vec.transpose())
 
     numpy.set_printoptions(suppress=True, linewidth=150)
+    print('QUESTION 3')
+    print('Covariance matrix in eigendecomposition form:')
+    print('')
     print(sigma)
 
 
@@ -129,9 +139,11 @@ def main():
         print("Error loading file")
         exit(1)
 
-    computeCov(original_data)
+    sys.stdout = open('assign1-najowhit.txt', 'w')
+    computeCov(original_data, printOutput=True)
     varianceProjection(original_data)
     lambdaEig(original_data)
+    sys.stdout.close()
 
 main()
 
