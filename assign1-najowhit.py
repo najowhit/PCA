@@ -118,7 +118,6 @@ def pca(data, alpha):
 
     # 6) Fraction of total variance
     # Summation of eigenvalues, starting with the first, until (sumEigen/totalVar) > .90
-    print('')
     count = 0.0
     dimension = 0
     for i in numpy.nditer(val):
@@ -126,8 +125,6 @@ def pca(data, alpha):
         fraction_var = count / numpy.sum(val)
         if fraction_var > alpha:
             break
-
-
         dimension += 1
 
     # 7) Choose dimensionality
@@ -136,12 +133,24 @@ def pca(data, alpha):
 
     # 8) Reduced basis
     t_vec = vec.transpose()
+
+    # +1 to change dimensions to account for index mismatching
     eigen_basis = t_vec[:dimension+1, :]
 
     # 9) Reduced dimensionality data
     projection = numpy.dot(z_center, eigen_basis.transpose())
 
     return projection
+
+
+def pcaUsage(data, alpha):
+
+    data_points = pca(data, alpha)
+
+    print('')
+    print('QUESTION 4 & 5')
+    print('')
+    print(data_points[:10, :])
 
 
 def main():
@@ -159,7 +168,7 @@ def main():
         print("Error loading file")
         exit(1)
 
-    #sys.stdout = open('assign1-najowhit.txt', 'w')
+    sys.stdout = open('assign1-najowhit.txt', 'w')
 
     # Controls when the output of computeCov should be utilized
     print_output = True
@@ -168,8 +177,9 @@ def main():
     varianceProjection(original_data)
     lambdaEig(original_data)
     pca(original_data, .9)
+    pcaUsage(original_data, .9)
 
-    #sys.stdout.close()
+    sys.stdout.close()
 
 main()
 
