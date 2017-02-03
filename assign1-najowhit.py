@@ -15,7 +15,7 @@ def centerData(data):
     return z_center
 
 
-def computeCov(data, printoutput):
+def computeCov(data, print_output):
 
     # Center the data, this redundancy from the centerData() method is kept to keep the algorithm clear
     row, columns = numpy.shape(data)
@@ -35,7 +35,7 @@ def computeCov(data, printoutput):
 
     cov_equality = numpy.allclose(my_cov, numpy_cov)
 
-    if printoutput:
+    if print_output:
         print('QUESTION 1')
         print('Output of numpy.allclose(my_cov, numpy_cov):')
         print(cov_equality)
@@ -72,8 +72,8 @@ def varianceProjection(data):
     projection = numpy.dot(z_center, subspace.transpose())
 
     # Compute variance of projection
-    printoutput=False
-    my_cov_projection = computeCov(projection, printoutput)
+    print_output=False
+    my_cov_projection = computeCov(projection, print_output)
     variance = numpy.trace(my_cov_projection)
     print('QUESTION 2')
     print('Variance:')
@@ -117,8 +117,18 @@ def pca(data, alpha):
     val, vec = linalg.eig(numpy_cov)
 
     # 6) Fraction of total variance
+    # Summation of eigenvalues, starting with the first, until (sumEigen/totalVar) > .90
+    print('')
+    count = 0.0
+    for i in numpy.nditer(val):
+        count += i
+        fraction_var = count / numpy.sum(val)
+        print(fraction_var)
+        if fraction_var > alpha:
+            break
 
     # 7) Choose dimensionality
+    r_val = fraction_var
 
     # 8) Reduced basis
 
@@ -140,7 +150,7 @@ def main():
         print("Error loading file")
         exit(1)
 
-    sys.stdout = open('assign1-najowhit.txt', 'w')
+    #sys.stdout = open('assign1-najowhit.txt', 'w')
 
     # Controls when the output of computeCov should be utilized
     print_output = True
@@ -148,7 +158,9 @@ def main():
     computeCov(original_data, print_output)
     varianceProjection(original_data)
     lambdaEig(original_data)
-    sys.stdout.close()
+    pca(original_data, alpha=0)
+
+    #sys.stdout.close()
 
 main()
 
