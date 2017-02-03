@@ -120,19 +120,28 @@ def pca(data, alpha):
     # Summation of eigenvalues, starting with the first, until (sumEigen/totalVar) > .90
     print('')
     count = 0.0
+    dimension = 0
     for i in numpy.nditer(val):
         count += i
         fraction_var = count / numpy.sum(val)
-        print(fraction_var)
         if fraction_var > alpha:
             break
+
+
+        dimension += 1
 
     # 7) Choose dimensionality
     r_val = fraction_var
 
+
     # 8) Reduced basis
+    t_vec = vec.transpose()
+    eigen_basis = t_vec[:dimension+1, :]
 
     # 9) Reduced dimensionality data
+    projection = numpy.dot(z_center, eigen_basis.transpose())
+
+    return projection
 
 
 def main():
@@ -158,7 +167,7 @@ def main():
     computeCov(original_data, print_output)
     varianceProjection(original_data)
     lambdaEig(original_data)
-    pca(original_data, alpha=0)
+    pca(original_data, .9)
 
     #sys.stdout.close()
 
